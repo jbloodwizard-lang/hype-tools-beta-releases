@@ -1,0 +1,20 @@
+# HYPE TOOLS BETA releases
+
+Public, release-only repository for **HYPE TOOLS BETA** installers and update metadata.
+It contains no application source code. The source repository is private.
+
+- App identity: `com.hypetools.desktop.beta`
+- Download: see the [Releases](../../releases) page. Only the newest two releases are kept.
+- Updates: the BETA app checks this repository only, when you ask it to. It asks before downloading and again before installing, and verifies a signed release statement and the installer hash.
+- This is the BETA channel. It may be unstable. The LIVE channel has its own separate repository and identity.
+
+## Everything here is public
+Release notes, installers, update metadata, hashes, workflow files and the release ledger are visible to anyone, and copies may be kept elsewhere. Installers contain extractable application code.
+
+## How releases are published
+1. The release manager creates a **draft** release and uploads exactly three files: the installer `HYPE-TOOLS-BETA-Setup-<version>.exe`, `latest.yml` and `release-statement.json`.
+2. The `verify-and-publish` workflow checks the draft (file allowlist, sizes, hashes, metadata, Ed25519 signature, replay protection) and, when asked, publishes it as the latest release.
+3. Releases are immutable once published. A bad release is fixed with a new, higher version, never replaced.
+4. BETA builds are published the same way, without the owner approval step.
+
+No signing keys or credentials are stored here. The only key material in this repository is the public verification key in `keys/update-public-key.txt`.
